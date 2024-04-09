@@ -1,9 +1,10 @@
 package se.hse.MailSenderApp.user
 
 import jakarta.persistence.*
+import org.springframework.security.core.GrantedAuthority
 
 @Entity
-data class AppUser (
+data class AppUser(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
@@ -16,6 +17,9 @@ data class AppUser (
     var role: UserRole = UserRole.USER
 )
 
-enum class UserRole {
+enum class UserRole : GrantedAuthority {
     ADMIN, USER;
+    override fun getAuthority(): String {
+        return name
+    }
 }
