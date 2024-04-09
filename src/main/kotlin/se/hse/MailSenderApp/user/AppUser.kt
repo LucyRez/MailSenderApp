@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority
 
 @Entity
 data class AppUser(
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
@@ -15,7 +16,7 @@ data class AppUser(
 
     @Enumerated(EnumType.STRING)
     var role: UserRole = UserRole.USER
-)
+) {constructor() : this(2, "dummy author", "dummy abstract", UserRole.USER)}
 
 enum class UserRole : GrantedAuthority {
     ADMIN, USER;

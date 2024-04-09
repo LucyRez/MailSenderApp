@@ -15,32 +15,12 @@ class EmailService {
 
     @Async
     fun send(to: String, email: String?) {
-        try {
-            val mimeMessage: MimeMessage = mailSender.createMimeMessage()
-            val helper = MimeMessageHelper(mimeMessage, "utf-8")
-            helper.setText(email!!, true)
-            helper.setTo(to)
-            helper.setSubject("Confirm your email")
-            helper.setFrom("gazkrut7@gmail.com")
-            mailSender!!.send(mimeMessage)
-        } catch (e: MessagingException) {
-            throw IllegalStateException("Failed to send email")
-        }
+
     }
 
     @Bean
     fun getJavaMailSender(): JavaMailSender {
-        val mailSender = JavaMailSenderImpl()
-        mailSender.host = "smtp.gmail.com"
-        mailSender.port = 587
-        mailSender.username = "gazkrut7@gmail.com"
-        mailSender.password = "ffdk qgwk souz bnro"
-        val props = mailSender.javaMailProperties
-        props["mail.transport.protocol"] = "smtp"
-        props["mail.smtp.auth"] = "true"
-        props["mail.smtp.starttls.enable"] = "true"
-        props["mail.debug"] = "true"
-        return mailSender
+
     }
 
 
