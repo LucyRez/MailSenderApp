@@ -10,16 +10,10 @@ import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Service
 
 @Service
-class EmailService {
-    private val mailSender: JavaMailSender = getJavaMailSender()
+class EmailService(val mailSender: JavaMailSender) {
 
     @Async
     fun send(to: String, email: String?) {
-
-    }
-
-    @Bean
-    fun getJavaMailSender(): JavaMailSender {
 
     }
 
@@ -91,12 +85,6 @@ class EmailService {
   </tbody></table><div class="yj6qo"></div><div class="adL">
 
 </div></div>"""
-    }
-
-    fun buildCredentialsEmail(email: String, password: String): String {
-        return "<strong>Your email has been successfully verified!</strong> " +
-                "<div> <p>You can now use the credentials below to authenticate.</p> " +
-                "<p>Email: " + email + "</p> <p>Password: " + password + "</p> </div>"
     }
 
 }
